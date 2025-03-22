@@ -1,4 +1,5 @@
 import {invoke} from "@tauri-apps/api/core";
+import { Command } from "@tauri-apps/plugin-shell";
 import {useQuery} from "@tanstack/react-query";
 import {Button} from "@/components/ui/button.tsx";
 import {createFileRoute, useNavigate} from "@tanstack/react-router";
@@ -17,7 +18,29 @@ function Disks() {
     const {data, isLoading} = useQuery({
         queryKey: ['disks'],
         queryFn: async () => {
-            const data: string[] = await invoke('get_blockdevices');
+            /** Schema:
+             * ```js
+            {
+                "blockdevices": [
+                    {
+                        "name": "/dev/sda",
+                        "size": "894,3G"
+                    }
+                ]
+            }
+            ```
+            */
+            const _call = await Command.create("exec-sh", [
+                "-c",
+                `lsblk -n -p --json --filter 'TYPE == "disk"' -o NAME,SIZE,MODEL`
+            ]).execute();
+            const data: {
+                "blockdevices": [{
+                    name: string,
+                    size: string,
+                    model: string
+                }]
+            } = JSON.parse(_call.stdout);
             console.log(data);
             return data;
         }
@@ -33,17 +56,17 @@ function Disks() {
             <p className={"text-lg"}>Once you have selected your disk, you can click on the button to install your new OS.</p>
             </div>
             <div className={"flex flex-col gap-4 w-2/3 max-h-96 overflow-y-auto"}>
-                {data?.map((disk) => {
-                    const parts = disk.split('/');
+                {data?.blockdevices.map((disk) => {
+                    const parts = disk.name.split("/");
                     const lastPart = parts[parts.length - 1];
                     return (
-                        <Card id={disk} className={`w-full ${selectedDisk === disk ? 'bg-blue-500' : ''}`}
-                        onClick={() => setSelectedDisk(disk)}>
+                        <Card id={disk.name} className={`w-full ${selectedDisk === disk.name ? 'bg-blue-500' : ''}`}
+                            onClick={() => setSelectedDisk(disk.name)}>
                             <CardHeader>
-                                <CardTitle>{lastPart}</CardTitle>
+                                <CardTitle>{lastPart} <span>({disk.model})</span></CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <div>Disk Size: 1.8 Petabytes</div>
+                                <div>Disk Size: {disk.size}</div>
                             </CardContent>
                         </Card>
                     )
