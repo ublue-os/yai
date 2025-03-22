@@ -56,11 +56,11 @@ function Disks() {
             <p className={"text-lg"}>Once you have selected your disk, you can click on the button to install your new OS.</p>
             </div>
             <div className={"flex flex-col gap-4 w-2/3 max-h-96 overflow-y-auto"}>
-                {data?.blockdevices.map((disk) => {
+                {data?.blockdevices.map((disk, idx) => {
                     const parts = disk.name.split("/");
                     const lastPart = parts[parts.length - 1];
                     return (
-                        <Card id={disk.name} className={`w-full ${selectedDisk === disk.name ? 'bg-blue-500' : ''}`}
+                        <Card id={idx.toString()} className={`w-full ${selectedDisk === disk.name ? 'bg-blue-500' : ''}`}
                             onClick={() => setSelectedDisk(disk.name)}>
                             <CardHeader>
                                 <CardTitle>{lastPart} <span>({disk.model})</span></CardTitle>
