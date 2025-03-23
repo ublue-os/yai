@@ -20,6 +20,22 @@
             {
               "validator": ".*"
             }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "shell:allow-spawn",
+      "allow": [
+        {
+          "name": "exec-sh",
+          "cmd": "bash",
+          "args": [
+            "-c",
+            {
+              "validator": ".*"
+            }
+          ]
           ],
           "sidecar": false
         }

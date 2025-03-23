@@ -1,10 +1,54 @@
 import {createFileRoute, useNavigate} from '@tanstack/react-router'
+import { Command } from '@tauri-apps/plugin-shell';
 import { LoaderCircle, CheckCircle2, Circle } from "lucide-react";
 import { useState, useEffect } from 'react';
 
 export const Route = createFileRoute('/installation')({
     component: RouteComponent,
-})
+});
+
+
+/**
+ * Run `bootc install to-disk to a specific disk`
+ * @param online Callback called when stdin receives a line.
+ * @param onerror Callback called when an error happens.
+ */
+async function bootcInstall(
+    disk: string,
+    online: (line: string) => void,
+    onerror: (error: string) => void
+): Promise<void> {
+    if (!disk.startsWith("/dev/")) {
+        console.error("disk path not valid, must start by '/dev/'");
+        return;
+    }
+
+    // TODO: Add image selector screen
+    const ctrImage = (await Command.create("exec-sh", [
+        "-c",
+        `podman images --format '{{.Repository}}:{{.Tag}}')"`
+    ]).execute()).stdout.trim();
+
+    const cmd = Command.create("exec-sh", [
+        "-c",
+        `
+        if ! systemd-analyze condition ConditionKernelCommandLine=rd.live.image; then
+            echo >&2 "Detected non-LiveCD environment. Aborting..."
+            exit 1
+        fi
+        pkexec bootc install to-disk \
+            --wipe \
+            --source-imgref ${ctrImage} \
+            ${disk}
+        `
+    ]);
+    cmd.stdout.on('data', online);
+    cmd.stderr.on('data', online);
+    cmd.on('error', onerror);
+
+    const childProc = await cmd.spawn();
+    console.log(childProc.pid);
+}
 
 function RouteComponent() {
     const [installationLogs, setInstallationLogs] = useState([
