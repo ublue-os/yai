@@ -33,12 +33,12 @@
           "args": [
             "-c",
             {
-              "validator": ".*"
+              "validator": "*"
             }
-          ]
+          ],
+          "sidecar": false
         }
-      ],
-      "sidecar": false
+      ]
     }
   ]
 }
