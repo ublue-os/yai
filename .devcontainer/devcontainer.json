@@ -1,0 +1,22 @@
+{
+    "name": "Ubuntu",
+    "build": {
+        "dockerfile": "Containerfile",
+        "context": "..",
+        "args": {
+            "VARIANT": "ubuntu-22.04"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "rust-lang.rust-analyzer"
+            ]
+        }
+    },
+    "remoteUser": "vscode",
+    "features": {
+        "node": "lts",
+        "rust": "latest"
+    }
+}

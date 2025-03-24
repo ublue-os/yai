@@ -36,10 +36,9 @@
               "validator": ".*"
             }
           ]
-          ],
-          "sidecar": false
         }
-      ]
+      ],
+      "sidecar": false
     }
   ]
 }
