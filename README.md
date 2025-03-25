@@ -1,7 +1,6 @@
 # YAI - Yet another installer
 
-Probably developing another installer.
-Currently work in progress.
+YAI is a work-in-progress installer for Universal Blue Systems based around bootc.
 
 <img src="media/yai-screen.png" width="750">
 
