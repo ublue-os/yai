@@ -28,7 +28,7 @@ if ! systemd-analyze condition ConditionKernelCommandLine=rd.live.image; then
     // TODO: Add image selector screen
     const ctrImage = (await Command.create("exec-sh", [
         "-c",
-        `podman images --format '{{.Repository}}:{{.Tag}}')"`
+        `pkexec podman images --format '{{.Repository}}:{{.Tag}}')"`
     ]).execute()).stdout.trim();
 
     console.log(`${ctrImage}`);
