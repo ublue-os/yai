@@ -1,0 +1,48 @@
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  checks: write
+  actions: read
+  packages: write
+  pull-requests: write
+
+name: release-please
+
+jobs:
+  release_please:
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          release-type: simple
+  publish_rpm:
+    name: Publish RPM for release
+    needs: release_please
+    if: ${{ needs.release_please.outputs.release_created }}
+    runs-on: ${{ matrix.platform == 'amd64' && 'ubuntu-24.04' || 'ubuntu-24.04-arm' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        - platform: [amd64, arm64]
+    steps:
+      - name: Setup Just
+        uses: extractions/setup-just@e33e0265a09d6d736e2ee1e0eb685ef1de4669ff # v3
+
+      - name: Build RPM
+        run: just bundle
+
+      - name: Upload Release Artifact
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload ${{ needs.release_please.outputs.tag_name }} src-tauri/target/release/bundle/rpm/*.rpm
