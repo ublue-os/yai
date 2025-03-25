@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/ublue-os/yai/compare/v1.1.1...v1.1.2) (2025-03-25)
+
+
+### Bug Fixes
+
+* use pkexec for podman images checking ([#20](https://github.com/ublue-os/yai/issues/20)) ([3add9fe](https://github.com/ublue-os/yai/commit/3add9fe896efe8ab69c3f7de56a7c8702c98477d))
+
 ## [1.1.1](https://github.com/ublue-os/yai/compare/v1.1.0...v1.1.1) (2025-03-25)
 
 
