@@ -19,27 +19,19 @@ async function bootcInstall(
     online: (line: string) => void,
     onerror: (error: string) => void
 ): Promise<void> {
-/*
-if ! systemd-analyze condition ConditionKernelCommandLine=rd.live.image; then
-            echo >&2 "Detected non-LiveCD environment. Aborting..."
-            exit 1
-        fi
- */
+
     // TODO: Add image selector screen
-    const ctrImage = (await Command.create("exec-sh", [
-        "-c",
-        `podman images --format '{{.Repository}}:{{.Tag}}')"`
-    ]).execute()).stdout.trim();
-
-    console.log(`${ctrImage}`);
-
     const cmd = Command.create("exec-sh", [
         "-c",
         `
-        
+        CONTAINER_IMAGE=$(pkexec podman images --format '{{.Repository}}:{{.Tag}}' | head -n 1)
+        if [ "$YAI_DEBUG_BREAK_MY_SYSTEM" != 1 ] && ! systemd-analyze condition ConditionKernelCommandLine=rd.live.image; then
+            echo >&2 "Detected non-LiveCD environment. Aborting..."
+            exit 1
+        fi
         pkexec bootc install to-disk \
             --wipe \
-            --source-imgref ${ctrImage} \
+            --source-imgref containers-storage:$CONTAINER_IMAGE \
             ${disk}
         `
     ]);
