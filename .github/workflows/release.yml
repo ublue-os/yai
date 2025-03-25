@@ -48,7 +48,6 @@ jobs:
         run: just bundle
 
       - name: Upload Release Artifact
-        if: ${{ steps.release.outputs.release_created }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
