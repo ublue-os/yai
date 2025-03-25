@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/ublue-os/yai/compare/v1.1.0...v1.1.1) (2025-03-25)
+
+
+### Bug Fixes
+
+* actually upload release artifacts ([#18](https://github.com/ublue-os/yai/issues/18)) ([51818b5](https://github.com/ublue-os/yai/commit/51818b5b570db2fff6b435351b7a55b4eeaa71f6))
+
 ## [1.1.0](https://github.com/ublue-os/yai/compare/v1.0.0...v1.1.0) (2025-03-25)
 
 
