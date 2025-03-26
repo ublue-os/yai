@@ -12,9 +12,10 @@
   "app": {
     "windows": [
       {
-        "title": "YAI",
+        "title": "System Installer",
         "minHeight": 600,
-        "minWidth": 800
+        "minWidth": 800,
+        "resizable": false
       }
     ],
     "security": {
