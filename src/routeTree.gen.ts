@@ -10,111 +10,129 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as InstallationImport } from './routes/installation'
-import { Route as DoneImport } from './routes/done'
-import { Route as DisksImport } from './routes/disks'
-import { Route as IndexImport } from './routes/index'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as UsersImport } from "./routes/users";
+import { Route as InstallationImport } from "./routes/installation";
+import { Route as DoneImport } from "./routes/done";
+import { Route as DisksImport } from "./routes/disks";
+import { Route as IndexImport } from "./routes/index";
 
 // Create/Update Routes
 
-const InstallationRoute = InstallationImport.update({
-  id: '/installation',
-  path: '/installation',
+const UsersRoute = UsersImport.update({
+  id: "/users",
+  path: "/users",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
+
+const InstallationRoute = InstallationImport.update({
+  id: "/installation",
+  path: "/installation",
+  getParentRoute: () => rootRoute,
+} as any);
 
 const DoneRoute = DoneImport.update({
-  id: '/done',
-  path: '/done',
+  id: "/done",
+  path: "/done",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const DisksRoute = DisksImport.update({
-  id: '/disks',
-  path: '/disks',
+  id: "/disks",
+  path: "/disks",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const IndexRoute = IndexImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/disks': {
-      id: '/disks'
-      path: '/disks'
-      fullPath: '/disks'
-      preLoaderRoute: typeof DisksImport
-      parentRoute: typeof rootRoute
-    }
-    '/done': {
-      id: '/done'
-      path: '/done'
-      fullPath: '/done'
-      preLoaderRoute: typeof DoneImport
-      parentRoute: typeof rootRoute
-    }
-    '/installation': {
-      id: '/installation'
-      path: '/installation'
-      fullPath: '/installation'
-      preLoaderRoute: typeof InstallationImport
-      parentRoute: typeof rootRoute
-    }
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/disks": {
+      id: "/disks";
+      path: "/disks";
+      fullPath: "/disks";
+      preLoaderRoute: typeof DisksImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/done": {
+      id: "/done";
+      path: "/done";
+      fullPath: "/done";
+      preLoaderRoute: typeof DoneImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/installation": {
+      id: "/installation";
+      path: "/installation";
+      fullPath: "/installation";
+      preLoaderRoute: typeof InstallationImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/users": {
+      id: "/users";
+      path: "/users";
+      fullPath: "/users";
+      preLoaderRoute: typeof UsersImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/disks': typeof DisksRoute
-  '/done': typeof DoneRoute
-  '/installation': typeof InstallationRoute
+  "/": typeof IndexRoute;
+  "/disks": typeof DisksRoute;
+  "/done": typeof DoneRoute;
+  "/installation": typeof InstallationRoute;
+  "/users": typeof UsersRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/disks': typeof DisksRoute
-  '/done': typeof DoneRoute
-  '/installation': typeof InstallationRoute
+  "/": typeof IndexRoute;
+  "/disks": typeof DisksRoute;
+  "/done": typeof DoneRoute;
+  "/installation": typeof InstallationRoute;
+  "/users": typeof UsersRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/disks': typeof DisksRoute
-  '/done': typeof DoneRoute
-  '/installation': typeof InstallationRoute
+  __root__: typeof rootRoute;
+  "/": typeof IndexRoute;
+  "/disks": typeof DisksRoute;
+  "/done": typeof DoneRoute;
+  "/installation": typeof InstallationRoute;
+  "/users": typeof UsersRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/disks' | '/done' | '/installation'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/disks' | '/done' | '/installation'
-  id: '__root__' | '/' | '/disks' | '/done' | '/installation'
-  fileRoutesById: FileRoutesById
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: "/" | "/disks" | "/done" | "/installation" | "/users";
+  fileRoutesByTo: FileRoutesByTo;
+  to: "/" | "/disks" | "/done" | "/installation" | "/users";
+  id: "__root__" | "/" | "/disks" | "/done" | "/installation" | "/users";
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  DisksRoute: typeof DisksRoute
-  DoneRoute: typeof DoneRoute
-  InstallationRoute: typeof InstallationRoute
+  IndexRoute: typeof IndexRoute;
+  DisksRoute: typeof DisksRoute;
+  DoneRoute: typeof DoneRoute;
+  InstallationRoute: typeof InstallationRoute;
+  UsersRoute: typeof UsersRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -122,11 +140,12 @@ const rootRouteChildren: RootRouteChildren = {
   DisksRoute: DisksRoute,
   DoneRoute: DoneRoute,
   InstallationRoute: InstallationRoute,
-}
+  UsersRoute: UsersRoute,
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {
@@ -137,7 +156,8 @@ export const routeTree = rootRoute
         "/",
         "/disks",
         "/done",
-        "/installation"
+        "/installation",
+        "/users"
       ]
     },
     "/": {
@@ -151,6 +171,9 @@ export const routeTree = rootRoute
     },
     "/installation": {
       "filePath": "installation.tsx"
+    },
+    "/users": {
+      "filePath": "users.tsx"
     }
   }
 }
