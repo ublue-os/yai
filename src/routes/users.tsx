@@ -12,7 +12,7 @@ function RouteComponent() {
   return (
     <main
       className={
-        "w-dvw h-dvh flex flex-col items-center justify-center bg-zinc-950 text-white gap-5"
+        "w-full h-full flex flex-col items-center justify-center dark:text-white gap-5"
       }
     >
       <h1
