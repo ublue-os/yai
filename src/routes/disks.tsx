@@ -28,7 +28,7 @@ function Disks() {
     // @ts-ignore
     const selectedDisk = useDiskStore((state) => state.disk);
 
-    const {data, isLoading} = useQuery({
+    const {data} = useQuery({
         queryKey: ["disks"],
         queryFn: async () => {
             /** Schema:
@@ -136,25 +136,3 @@ function Disks() {
         </main>
     );
 }
-
-/*
- <Dialog>
-                <DialogTrigger asChild>
-                  <Button className="px-20 py-2">Confirm</Button>
-                </DialogTrigger>
-                <DialogContent className={"w-full"}>
-                  <DialogHeader>
-                    <DialogTitle><div className="flex items-center"><LockIcon size={32} className="px-1"/> Set a password for your disk</div></DialogTitle>
-                  </DialogHeader>
-                  <Input
-                    id="password"
-                    type="password"
-                    placeholder="Disk Password"
-                    className="col-span-3"
-                  />
-                  <DialogFooter>
-
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
- */

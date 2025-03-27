@@ -24,6 +24,7 @@ export function EncryptDiskDialog() {
                         To secure your private and sensitive data, we highly recommend setting a password for your disk.
                     </DialogDescription>
                 </DialogHeader>
+
                 <div className="grid gap-4 py-4">
                     <Input
                         id="password"
