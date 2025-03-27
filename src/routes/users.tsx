@@ -52,7 +52,7 @@ function RouteComponent() {
     if (values.password != values.password_repeat) {
       form.setError(
         "password_repeat",
-        { type: "custom", message: "Your password does not match" },
+        { type: "custom", message: "Passwords do not match" },
         { shouldFocus: true },
       );
       return;

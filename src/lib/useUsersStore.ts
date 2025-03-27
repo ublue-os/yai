@@ -1,16 +1,15 @@
 import { create } from "zustand";
 
 interface UserState {
-  enabled: boolean,
-  setEnabled: (enabled: boolean) => void,
-  username: string,
-  setUsername: (username: string) => void,
-  password: string,
-  setPassword: (password: string) => void,
-  unixname: string,
-  setUnixname: (unixname: string) => void,
+  enabled: boolean;
+  setEnabled: (enabled: boolean) => void;
+  username: string;
+  setUsername: (username: string) => void;
+  password: string;
+  setPassword: (password: string) => void;
+  unixname: string;
+  setUnixname: (unixname: string) => void;
 }
-
 
 export const useUsersStore = create<UserState>((set) => ({
   enabled: false,
