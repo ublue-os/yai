@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.0](https://github.com/ublue-os/yai/compare/v1.1.2...v1.2.0) (2025-03-27)
+
+
+### Features
+
+* add dark mode support, new screens for disk encryption and more ([#31](https://github.com/ublue-os/yai/issues/31)) ([274c5d9](https://github.com/ublue-os/yai/commit/274c5d9751b3cfcca9ee6326a696ba90340d81d2))
+* fully functional users page with storage ([#37](https://github.com/ublue-os/yai/issues/37)) ([a643f14](https://github.com/ublue-os/yai/commit/a643f1493258564c2222bb2bbd85a1537392bea1))
+* functioning FDE prompt (+format) ([#38](https://github.com/ublue-os/yai/issues/38)) ([b483643](https://github.com/ublue-os/yai/commit/b4836436cf9fa1e2d24065b714d67f2842798ace))
+
+
+### Bug Fixes
+
+* **deps:** update dependency lucide-react to ^0.484.0 ([#22](https://github.com/ublue-os/yai/issues/22)) ([38b05b9](https://github.com/ublue-os/yai/commit/38b05b99f81688d7ac6f68e06330465905a9ad77))
+
 ## [1.1.2](https://github.com/ublue-os/yai/compare/v1.1.1...v1.1.2) (2025-03-25)
 
 ### Bug Fixes
