@@ -25,7 +25,7 @@ async fn async_create_shell(state: State<'_, AppState>) -> Result<(), String> {
     let mut cmd = CommandBuilder::new("powershell.exe");
 
     #[cfg(not(target_os = "windows"))]
-    let mut cmd = CommandBuilder::new("bash");
+    let mut cmd = CommandBuilder::new("sh");
 
     // add the $TERM env variable so we can use clear and other commands
 

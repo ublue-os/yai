@@ -125,7 +125,14 @@ function Disks() {
                             </DrawerDescription>
                         </DrawerHeader>
                         <DrawerFooter>
-                            <EncryptDiskDialog/>
+                            {/*FIXME: disk encryption is currently not a thing we can do
+                            We need to get manual partitioning going because
+                            the current, default partitioning layout for bootc install
+                            fails to set a password, so we just have a useless disk
+                            <EncryptDiskDialog/> */}
+                            <Button
+                                onClick={() => router.navigate({ to: "/installation" })}
+                                variant="default">Confirm</Button>
                             <DrawerClose>
                                 <Button variant="outline">Cancel</Button>
                             </DrawerClose>
