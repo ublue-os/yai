@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.2.0](https://github.com/ublue-os/yai/compare/v1.1.2...v1.2.0) (2025-04-06)
+
+
+### Features
+
+* add dark mode support, new screens for disk encryption and more ([#31](https://github.com/ublue-os/yai/issues/31)) ([274c5d9](https://github.com/ublue-os/yai/commit/274c5d9751b3cfcca9ee6326a696ba90340d81d2))
+* fully functional users page with storage ([#37](https://github.com/ublue-os/yai/issues/37)) ([a643f14](https://github.com/ublue-os/yai/commit/a643f1493258564c2222bb2bbd85a1537392bea1))
+* functioning FDE prompt (+format) ([#38](https://github.com/ublue-os/yai/issues/38)) ([b483643](https://github.com/ublue-os/yai/commit/b4836436cf9fa1e2d24065b714d67f2842798ace))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @hookform/resolvers to v5 ([#42](https://github.com/ublue-os/yai/issues/42)) ([aa1adde](https://github.com/ublue-os/yai/commit/aa1adde3dfe7f9117c5fdabd1da0e56b62220304))
+* **deps:** update dependency lucide-react to ^0.484.0 ([#22](https://github.com/ublue-os/yai/issues/22)) ([38b05b9](https://github.com/ublue-os/yai/commit/38b05b99f81688d7ac6f68e06330465905a9ad77))
+* **deps:** update dependency lucide-react to ^0.487.0 ([#41](https://github.com/ublue-os/yai/issues/41)) ([d671652](https://github.com/ublue-os/yai/commit/d671652597fe4b649d4ba9cd4d3a79b1cbfa36a9))
+* **deps:** update rust crate tauri-plugin-shell to v2.2.1 [security] ([#45](https://github.com/ublue-os/yai/issues/45)) ([9ea4139](https://github.com/ublue-os/yai/commit/9ea413926a036ffa0f34ca9749bcaf9ad9817476))
+* **deps:** update tauri monorepo to v2.4.1 ([#43](https://github.com/ublue-os/yai/issues/43)) ([f6e9969](https://github.com/ublue-os/yai/commit/f6e9969a3b02d0a35595774a3fc06f8ebebf421f))
+
 ## [1.1.2](https://github.com/ublue-os/yai/compare/v1.1.1...v1.1.2) (2025-03-25)
 
 ### Bug Fixes
